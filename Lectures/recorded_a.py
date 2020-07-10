@@ -86,7 +86,10 @@ pass by reference cup = ☕️  fillcup(☕️)  <-- same cup being used within 
 ^^^^^ it works that way because of memory.  memory = ram. 
 
 simple variables get passed by value -int -str -boolens 
-complex variables 
+complex variables get passed by reference  -lists -dictoinaries -tupl -sets
+-class objects 
+
+list compherhenion is creating a new list (1)
 
 '''
 
@@ -94,3 +97,55 @@ some_nums = [1, 2, 3, 4]
 print(some_nums)
 mult2_list(some_nums)
 print(some_nums)
+
+
+'''
+UPER METHOD - important in interviews. interview problems are phrased into english words, up to us to break it down into the details. (state, numbers, rules)
+
+U - understand the problem, ask tons of questions. constraits (ex: mobile, slow computers, or high power machines) (who what where   when) money, time, speed, resources, performance, parameters. What are my inputs and outputs?  - edge cases(source of most bugs) ( ex: large numbers) -what input will break the program? - off by one bugs  
+    spend most of your time in this section to get out all ideas and questions
+P - planning, pseudo code, MVP goal, Can you describe a MVP or brute force solution? Tinker and tailor it to a better solution if you have time. Have all the work laid out.  
+E - excute - should be simple, use the pseuo code from Planning and set up the project in a clean organized way.  
+R - reflect/repeat/refactor/run - if there's an error, start back at Understand and begin again. 
+
+'''
+
+''' 
+problem example:centered_average
+Return the "centered" average of an array of ints, which we'll say is the mean average of the values, expect ignoring the largest and smallest values in the array.  If there are multiple copies of the smallest value, ignore just one copy, and likewise for the largest value. Use int division to produce the final average.  You may assume that the array is length 3 or more. 
+
+Understand - lenght 3 or more. average = sum of all nums divided by the list minus 2 & ( in each list, minus the largest and smallest values.) int divison? (rounding the number) nerver have floats. //   no multible copies of the numbers in each array.  Are they presorted? Assume not sorted. 
+
+Planning - pre sort to remove the min and max numbers. then take the average / sum of all numbers divided len(list). sorting is expensive. OR pop off the min and max numbers of each list. removing is expensive as well. or ignore using slices. 
+
+def center_average(nums):
+    max_num = max(nums)
+    min_num = min(nums)
+    current_sum = sum(nums)
+    final_sum = current_sum - max - min
+    return final_sum // (len(nums -2)
+    # find max number of nums
+    # find the min number
+    # get the sum of nums
+    # subtract the max and min
+    # divide the value by len(nums) - 2
+
+'''
+
+def center_average(nums):
+    max_num = max(nums)
+    min_num = min(nums)
+    current_sum = sum(nums)
+    final_sum = current_sum - max_num - min_num
+    return final_sum // (len(nums -2))
+
+center_average([1, 2, 3, 4, 100]) 
+center_average([1, 1, 5, 5, 10, 8, 7])
+center_average([-10, -4, -2, -4, -2, 0])
+
+'''
+lines 135 to 144 there's an error. 
+line 140, in center_average
+    return final_sum // (len(nums -2))
+TypeError: unsupported operand type(s) for -: 'list' and 'int'
+'''
